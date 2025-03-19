@@ -60,6 +60,7 @@ export default function InterviewsPage() {
                 <TableHead className="text-left p-4">Description</TableHead>
                 <TableHead className="text-left p-4">Questions</TableHead>
                 <TableHead className="text-left p-4">Date Created</TableHead>
+                <TableHead className="text-left p-4">Action</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -68,12 +69,22 @@ export default function InterviewsPage() {
                   <TableCell className="p-4">{interview.title}</TableCell>
                   <TableCell className="p-4">{interview.description}</TableCell>
                   <TableCell className="p-4">
-                  {interview.questions.map((q, index) => (
-                    <div key={index}> {q} </div>
-                  ))}
+                    {interview.questions.map((question, index) => (
+                      <div key={index} className="mb-2 last:mb-0">
+                        {question}
+                      </div>
+                    ))}
                   </TableCell>
                   <TableCell className="p-4">
                     {new Date(interview.dateCreated).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell className="p-4">
+                    <Button
+                      onClick={() => router.push(`/candidate?id=${interview.id}`)}
+                      className="bg-green-600 text-white"
+                    >
+                      Start Interview
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
