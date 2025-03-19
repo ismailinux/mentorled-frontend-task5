@@ -22,7 +22,7 @@ export default function CandidateInterviewPage() {
   const [answer, setAnswer] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+  const id = searchParams ? searchParams.get("id") : null; // Fallback for SSR
 
   useEffect(() => {
     if (id) {
@@ -43,8 +43,11 @@ export default function CandidateInterviewPage() {
         }
       };
       fetchInterview();
+    } else {
+      // Redirect to /interviews if no id is provided
+      router.push("/interviews");
     }
-  }, [id]);
+  }, [id, router]);
 
   useEffect(() => {
     if (timeLeft > 0 && interview && currentQuestionIndex < interview.questions.length) {
@@ -68,6 +71,10 @@ export default function CandidateInterviewPage() {
   const handleSubmit = () => {
     console.log("Answer submitted:", answer);
   };
+
+  if (!id) {
+    return <div className="p-6 bg-gray-50 min-h-screen">Redirecting...</div>;
+  }
 
   if (!interview) {
     return <div className="p-6 bg-gray-50 min-h-screen">Loading...</div>;
@@ -118,4 +125,5 @@ export default function CandidateInterviewPage() {
   );
 }
 
+// Disable prerendering for this page
 export const dynamic = "force-dynamic";
