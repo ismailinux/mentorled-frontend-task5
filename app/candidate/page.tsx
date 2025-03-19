@@ -1,3 +1,4 @@
+// app/candidate/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -17,8 +18,8 @@ interface Interview {
 export default function CandidateInterviewPage() {
   const [interview, setInterview] = useState<Interview | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(30); 
-  const [answer, setAnswer] = useState(""); 
+  const [timeLeft, setTimeLeft] = useState(30);
+  const [answer, setAnswer] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
@@ -57,10 +58,10 @@ export default function CandidateInterviewPage() {
   const handleNext = () => {
     if (interview && currentQuestionIndex < interview.questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setTimeLeft(30); 
-      setAnswer(""); 
+      setTimeLeft(30);
+      setAnswer("");
     } else {
-      router.push("/interviews"); 
+      router.push("/interviews");
     }
   };
 
@@ -109,7 +110,6 @@ export default function CandidateInterviewPage() {
         <Button
           onClick={handleNext}
           className="bg-green-600 text-white"
-        //   disabled={timeLeft === 0}
         >
           Next
         </Button>
@@ -117,3 +117,5 @@ export default function CandidateInterviewPage() {
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";
