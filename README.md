@@ -5,7 +5,7 @@ A simple web application to create and manage interview sessions using Next.js, 
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/ismailinux/mentorled-frontend-task3.git
+   git clone https://github.com/ismailinux/mentorled-frontend-task5.git
    cd interview-creator
 
 2. Install dependencies: 
