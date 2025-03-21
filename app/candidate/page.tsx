@@ -1,3 +1,4 @@
+// app/candidate/page.tsx
 import CandidateClient from "./CandidateClient";
 
 export default function CandidateInterviewPage() {
